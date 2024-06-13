@@ -1,0 +1,47 @@
+@if (cartItems.length) {
+   <div class="container mt-4">
+      <table class="table table-striped table-bordered">
+         <thead>
+            <tr>
+               <th>Sr. No</th>
+               <th>Product Name</th>
+               <th>Product Image</th>
+               <th>Price</th>
+               <th>Quantity</th>
+               <th>Action</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            @for (item of cartItems; let i = $index; track item.id) {
+               <tr>
+                  <td>{{i + 1}}</td>
+                  <td>{{item.title}}</td>
+                  <td><img class="avatar" [src]="item.image" alt="product"/></td>
+                  <td>{{item.price}}</td>
+                  <td>{{item.quantity}}</td>
+                  <td>
+                     <button (click)="removeProduct(item)" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                     </button>
+                  </td>
+               </tr>
+
+            }
+         </tbody>
+      </table>
+
+      <div class="d-flex justify-content-between align-items-center">
+         <strong>Total: {{totalAmount}}</strong>
+      </div>
+   </div>
+}
+@else {
+   <div>
+      <div class="center">
+         <img src="../../assets/empty_cart.png" alt="" />
+         <h2>Your cart is empty</h2>
+         <button class="btn btn-primary" routerLink="/">Shop Now</button>
+      </div>
+   </div>
+}
