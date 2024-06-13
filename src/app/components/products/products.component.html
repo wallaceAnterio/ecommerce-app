@@ -1,0 +1,31 @@
+<div class="container">
+   <div class="row row-cols-md-4 g-4 mt-4">
+      @for ( product of productList; track product.id) {
+      <ng-container>
+         <div class="col">
+            <div class="card">
+               <img src="{{ product.image }}" alt="" class="img-fixed-size" />
+               <div class="card-body">
+                  <div class="card-title">{{ product.title }}</div>
+                  <div class="card-text">
+                     <strong>Price: </strong>{{ product.price }}
+                  </div>
+                  <div class="card-text">{{ product.category }}</div>
+                  <p class="card-text description">{{ product.description }}</p>
+                  <button class="btn btn-primary" (click)="addToCart(product)">
+                     Add to card
+                  </button>
+                  <button
+                     [ngClass]="{ active: isInWhishlist(product) }"
+                     (click)="toggleWishlist(product)"
+                     class="btn btn-link"
+                  >
+                     <i class="fas fa-heart fa-2x"></i>
+                  </button>
+               </div>
+            </div>
+         </div>
+      </ng-container>
+      }
+   </div>
+</div>
